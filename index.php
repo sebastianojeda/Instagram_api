@@ -18,8 +18,13 @@ define('ImageDirectory ', 'pics/');
 																	 'grant_type' => 'authorization_code',
 																	 'redirect_uri' => redirectURI,
 																	 'code' => $code);
-
-	}
+		//cURL is what we use in php
+$curl = curl_init($url)//setting a curl session and we put in a $url because that's where we are getting the data from
+curl_setopt($curl, CURLOPT_POST, true)
+curl_setopt($curl, CURLOPT_POSTFIELDS, $access_token_settings)//setting POSTFIELDS to the array setup
+curl_setopt($curl, CURLOPT_RETURNTRANSFER, 1)
+curl_setopt($curl, CURLOPT_SSL_VERIFYPEER, false)
+}	
 
 ?>
 
