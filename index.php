@@ -25,6 +25,15 @@ function connectToInsatgram($url){
 	return $result;
 }
 
+//function to get user id
+function getUserID($userName){
+	$url = 'http://api.instagram.com/v1/users/search?q='.$userName.'&client_id='.clientID;
+	$instagramInfo = connectToInsatgram($url);
+	$results = json_decode($instagramInfo, true);
+
+	echo $results['data']['0']['id'];
+}
+
 	if (isset($_GET['code'] )){
 		$code = ($_GET['code'] );
 		$url = 'https://api.instagram.com/oauth/access_token';
@@ -43,8 +52,8 @@ curl_setopt($curl, CURLOPT_SSL_VERIFYPEER, false);//but in live work-production 
 $result = curl_exec($curl);
 curl_close($curl);
 
-$result = json_decode($result, true);
-echo $result['user']['username'];
+$results = json_decode($result, true);
+ getUserID($results['user']['username']);
 }	else{
 
 ?>
