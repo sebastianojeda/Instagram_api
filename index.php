@@ -10,6 +10,21 @@ define('clientSecret', 'f6c872ea0bdf4e36b05fb9287b6b8f7d');
 define('redirectURI', 'http://localhost/LearningAPI/index.php');
 define('ImageDirectory ', 'pics/');
 
+//function that is goinig to connect to instagram
+function connectToInsatgram($url){
+	$ch = curl_init();
+
+	curl_setopt_array($ch, array(
+		CURLOPT_URL => $url,
+		CURLOPT_RETURNTRANSFER => true,
+		CURLOPT_SSL_VERIFYPEER => false,
+		CURLOPT_SSL_VERIFYHOST => 2,
+	));
+	$result = curl_exec($ch);
+	curl_close($ch);
+	return $result;
+}
+
 	if (isset($_GET['code'] )){
 		$code = ($_GET['code'] );
 		$url = 'https://api.instagram.com/oauth/access_token';
@@ -26,7 +41,7 @@ curl_setopt($curl, CURLOPT_RETURNTRANSFER, 1);//setting it equal to 1 because we
 curl_setopt($curl, CURLOPT_SSL_VERIFYPEER, false);//but in live work-production we want to set this to true
 
 $result = curl_exec($curl);
-curl_close();
+curl_close($curl);
 
 $result = json_decode($result, true);
 echo $result['user']['username'];
