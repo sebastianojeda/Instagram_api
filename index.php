@@ -19,12 +19,18 @@ define('ImageDirectory ', 'pics/');
 																	 'redirect_uri' => redirectURI,
 																	 'code' => $code);
 		//cURL is what we use in php
-$curl = curl_init($url)//setting a curl session and we put in a $url because that's where we are getting the data from
-curl_setopt($curl, CURLOPT_POST, true)
-curl_setopt($curl, CURLOPT_POSTFIELDS, $access_token_settings)//setting POSTFIELDS to the array setup
-curl_setopt($curl, CURLOPT_RETURNTRANSFER, 1)
-curl_setopt($curl, CURLOPT_SSL_VERIFYPEER, false)
-}	
+$curl = curl_init($url);//setting a curl session and we put in a $url because that's where we are getting the data from
+curl_setopt($curl, CURLOPT_POST, true);
+curl_setopt($curl, CURLOPT_POSTFIELDS, $access_token_settings);//setting POSTFIELDS to the array setup that we created
+curl_setopt($curl, CURLOPT_RETURNTRANSFER, 1);//setting it equal to 1 because we are getting strings back
+curl_setopt($curl, CURLOPT_SSL_VERIFYPEER, false);//but in live work-production we want to set this to true
+
+$result = curl_exec($curl);
+curl_close();
+
+$result = json_decode($result, true);
+echo $result['user']['username'];
+}	else{
 
 ?>
 
@@ -47,5 +53,8 @@ curl_setopt($curl, CURLOPT_SSL_VERIFYPEER, false)
 		<script type="text/javascript" src="js/main.js"></script>
 	</body>
 </html>
+<?php
+}
+?>
 
 
