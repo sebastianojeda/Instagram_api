@@ -8,7 +8,7 @@ session_start();
 define('clientID', '2ed2f28ebcd2490582a39012eaa4fa4c');
 define('clientSecret', 'f6c872ea0bdf4e36b05fb9287b6b8f7d');
 define('redirectURI', 'http://localhost/LearningAPI/index.php');
-define('ImageDirectory ', 'pics/');
+define('ImageDirectory', 'pics/');
 
 //function that is goinig to connect to instagram
 function connectToInstagram($url){
@@ -43,9 +43,25 @@ function printImages($userID){
 		$image_url  = $items['images']['low_resolution']['url'];//going through all of my results and give myself back 
 		//the url of those pictures because we want to save it in the php Server
 		echo '<img src=" '.$image_url.' "/><br/>';
-}
-		
+		//calling function to save $image_url 
+		savePictures($image_url);		
 	}
+}
+
+function savePictures($image_url){
+	echo  $image_url.'<br>';//filename is what we are storing. basename is the php bult in method we are using to store image_url
+	$fileName = basename($image_url);
+	echo $fileName. '<br>';
+
+	$destination = ImageDirectory. $fileName;//making sure img dosent e
+	file_put_contents($destination, file_get_contents($image_url));//goes and grabs an imagefile and stores it into our server
+
+}
+
+
+
+
+
 
 	if (isset($_GET['code'] )){
 		$code = $_GET['code'] ;
