@@ -1,0 +1,39 @@
+@import "main2.css";
+
+body{
+	background-image: url('../pics/pixels.jpg');
+}
+/*.log-box{
+	width: 400px;
+	height: 400px;
+	margin-left: 35%;
+	background-color: black;
+	opacity: 0.8;
+}
+.log{
+	font-size: 40px;
+	color: white;
+	margin-left: 35.5%;
+	margin-top: 50%;
+}*/
+
+@media only screen and (max-device-width: 320px)  {
+	body {
+	background-color: pink;
+	}
+ 
+}
+@media only screen and (max-device-width: 375px)  {
+	body {	
+   	background-color: green;
+	}
+ 
+}
+@media only screen and (max-device-width: 1024px) {
+	body {
+   	background-color: brown;
+	}
+
+
+
+}
